@@ -4,3 +4,12 @@
 
 #Terraform plugin
 *.terraform/
+
+#Serverless data files
+*.serverless/
+
+#Webpack settings
+*.webpack/
+
+#node modules
+*node_modules/
