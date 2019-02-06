@@ -1,7 +1,6 @@
 import decimal
 import json
 
-
 # Helper class to convert a DynamoDB item to JSON.
 class DecimalEncoder(json.JSONEncoder):
   def default(self, o):
@@ -20,8 +19,8 @@ def create_response(status, body):
   response = {
     'statusCode': status,
     'headers': {
-      'Access-Control-Allow-Origin': '*',
-      #'Access-Control-Allow-Origin': 'https://2941c00b11904ee29537c1baa5ac37d4.vfs.cloud9.us-east-1.amazonaws.com',
+      #'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'http://gowens-serverless.s3-website-us-east-1.amazonaws.com',
       'Access-Control-Allow-Credentials' : 'true'
     },
     'body': json.dumps(body, cls=DecimalEncoder)

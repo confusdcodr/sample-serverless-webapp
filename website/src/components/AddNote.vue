@@ -53,7 +53,7 @@ export default {
                         text: this.note
                     },
                     headers: {
-                        Authorization: jwt 
+                        'Authorization': jwt 
                     },
                     withCredentials: false
                 })

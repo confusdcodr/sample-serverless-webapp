@@ -1,8 +1,7 @@
-service: myService # TODO: update this with your service name
+service: ${opt:api_name} # TODO: update this with your service name
 
 plugins:
   - serverless-python-requirements
-
 provider:
   name: aws
   runtime: python3.7
@@ -32,7 +31,7 @@ functions:
           cors: true
           authorizer:
             name: authorizer
-            arn: arn:aws:cognito-idp:us-east-1:701759196663:userpool/us-east-1_O8iAg7qoJ
+            arn: arn:aws:cognito-idp:us-east-1:701759196663:userpool/us-east-1_YMwwtgKdN 
 
   list:
     handler: notes/list.list
