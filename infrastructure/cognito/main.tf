@@ -3,16 +3,6 @@ provider "aws" {
   version = "~> 1.56"
 }
 
-variable "cognito_pool" {
-  type    = "string"
-  default = "notes-cognito-pool"
-}
-
-variable "webapp_name" {
-  type    = "string"
-  default = "notes-webapp"
-}
-
 resource "aws_cognito_user_pool" "pool" {
   name = "${var.cognito_pool}"
  
@@ -24,40 +14,25 @@ resource "aws_cognito_user_pool" "pool" {
     require_uppercase = true
   }
 
-  # Remove this in and enable below for email addresses
-  alias_attributes = ["email"]
-
-  # This alters the signin to use email as opposed to usernames
-  #username_attributes = ["email"] 
+  username_attributes = ["email"] 
   auto_verified_attributes = ["email"]
 
   # This adds required standard attributes. 
-  # Terraform doesn't seem to support required customer attributes
-  #schema {
-  #  name                = "email"
-  #  required            = true
-  #  attribute_data_type = "String"
-  #  mutable             = false
-  #}
-
-  #schema {
-  #  name                = "family_name"
-  #  required            = true
-  #  attribute_data_type = "String"
-  #  mutable             = false
-
-  #  string_attribute_constraints {
-  #    min_length = 7
-  #    max_length = 15
-  #  }
-  #}
+  schema {
+    name                = "email"
+    required            = true
+    attribute_data_type = "String"
+    mutable             = false
+  }
 
   verification_message_template {
     default_email_option = "CONFIRM_WITH_CODE"
   }
 
   tags {  
-    Project = "gowens-serverless"
+    Name = "serverless-demo"
+    Environment = "demo"
+    Project = "serverless-demo"
   }
 }
 

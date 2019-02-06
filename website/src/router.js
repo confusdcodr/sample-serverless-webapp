@@ -3,9 +3,7 @@ import Router from 'vue-router'
 
 // Page content
 import Home from '@/components/Home'
-import Notes from '@/components/Notes'
 import AddNote from '@/components/AddNote'
-import MyNotes from '@/components/MyNotes'
 import Contact from '@/components/Contact'
 import Signup from '@/components/Signup'
 
@@ -22,19 +20,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/notes',
-      name: 'Notes',
-      component: Notes
-    },
-    {
       path: '/addnote',
       name: 'AddNote',
       component: AddNote
-    },
-    {
-      path: '/mynotes',
-      name: 'MyNotes',
-      component: MyNotes
     },
     {
       path: '/contact',

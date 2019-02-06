@@ -24,11 +24,8 @@ def create(event, context):
 
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
-
-    if event['requestContext']['authorizer']['claims']['email'] != None:
-        userId = event['requestContext']['authorizer']['claims']['email']
-    elif 'user' in data:
-        userId = data['user']
+    if 'authorizer' in event['requestContext'] != None:
+        userId = event['requestContext']['authorizer']['claims']['cognito:username']
     else:
         userId = 'Anonymous'
 

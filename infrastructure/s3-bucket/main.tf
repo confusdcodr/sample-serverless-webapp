@@ -3,16 +3,12 @@ provider "aws" {
   version = "~> 1.56"
 }
 
-variable "website_bucket" {
-  type    = "string"
-  default = "sample-serverless-webapp"
-}
-
-resource "aws_s3_bucket" "static_website_bucket" {
-  bucket = "${var.website_bucket}"
+resource "aws_s3_bucket" "website_bucket" {
+  bucket = "${var.bucket_name}"
   tags   = {
     Name        = "serverless-demo"
     Environment = "demo"
+    Project     = "serverless-demo"
   }
 
   website {
@@ -28,7 +24,7 @@ resource "aws_s3_bucket" "static_website_bucket" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${var.website_bucket}/*"
+      "Resource": "arn:aws:s3:::${var.bucket_name}/*"
     }
   ]
 }

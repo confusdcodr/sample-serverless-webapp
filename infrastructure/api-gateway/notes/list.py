@@ -18,7 +18,7 @@ def list(event, context):
         response = table.scan()
     except ClientError as e:
         #log.error(e.response['Error'])
-        response['error'] = 'Failed to retrieve properties'
+        response['error'] = 'Failed to retrieve notes'
     else:
         if 'Items' not in response.keys():
             response['Items'] = []

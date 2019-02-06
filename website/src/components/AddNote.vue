@@ -34,6 +34,8 @@ export default {
     },
     methods: {
         addNote: function () {
+            let self = this
+
             if(this.note === "") {
                 return
             }
@@ -53,12 +55,12 @@ export default {
                         text: this.note
                     },
                     headers: {
-                        Authorization: jwt 
+                        'Authorization': jwt 
                     },
                     withCredentials: false
                 })
                 .then(function (response) {
-                    console.log(response);
+                    self.$router.push({ name: 'Home', query: { redirect: '/' } });
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -68,7 +70,7 @@ export default {
                     text: this.note    
                 })
                 .then(function (response) {
-                    console.log(response);
+                    self.$router.push({ name: 'Home', query: { redirect: '/' } });
                 })
                 .catch(function (error) {
                     console.log(error);
