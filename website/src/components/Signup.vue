@@ -45,9 +45,6 @@ export default {
         this.findUser();
         
         AmplifyEventBus.$on('authState', info => {
-            console.log(info)
-            
-            this.$store.state.signedIn = true;
             if(info === "signedIn") {
                 this.findUser();
             } else {
@@ -60,7 +57,7 @@ export default {
         async findUser() {
             try {
                 const user = await Auth.currentAuthenticatedUser();
-                this.$store.commit('signIn', user);
+                this.$store.commit('signIn', {user: user, signedIn: true});
                 this.$router.push({ name: 'Home', query: { redirect: '/' } });
             } catch (err) {
                 this.$store.state.signedIn = false;
