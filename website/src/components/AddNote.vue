@@ -46,7 +46,7 @@ export default {
                     .getIdToken()
                     .getJwtToken();
  
-                console.log(jwt)
+                //console.log(jwt)
 
                 this.$http({
                     method: 'post',

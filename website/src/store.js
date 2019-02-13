@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    plugins: [createPersistedState()],
     // define data for store
     state: {
         signedIn: false,
@@ -12,8 +14,8 @@ export default new Vuex.Store({
     // synchronous actions
     mutations: {
         signIn(state, payload) {
-            state.signedIn = true
-            state.user = payload
+            state.signedIn = payload.signedIn
+            state.user = payload.user
         },
         signOut(state) {
             state.signedIn = false
